@@ -1,8 +1,9 @@
 <?php
 $server = "localhost";
-$username = "root ";
+$username = "root";
 $password = "";
-$db = "user";
+$db = "db_user";
+$koneksi = mysqli_connect($server, $username, $password, $db);
 
 if (mysqli_connect_errno()) {
     echo "Koneksi Gagal : " . mysqli_connect_errno();

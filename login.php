@@ -1,113 +1,91 @@
 <?php
 require('koneksi.php');
-
 session_start();
 
 if (isset($_POST['submit'])) {
     $email = $_POST['txt_email'];
-    $pass = $_POST['txt_password'];
+    $pass = $_POST['txt_pass'];
 
+    // validasi user dan password dari database
     if (!empty(trim($email)) && !empty(trim($pass))) {
-        $query = "SELECT * FROM user_detail WHERE user_email = '$email'";
+        $query = "SELECT * FROM user_detail WHERE user_email = '$email' ";
         $result = mysqli_query($koneksi, $query);
         $num = mysqli_num_rows($result);
 
-        if ($num != 0) {
-            $row = mysqli_fetch_array($result);
-
+        while ($row = mysqli_fetch_array($result)) {
             $id = $row['id'];
             $userVal = $row['user_email'];
             $passVal = $row['user_password'];
-            $userName = $row['user_fullname'];
-            $level = $row['id_level'];
+            $level = $row['level'];
+        }
 
-            // Periksa email dan kata sandi dengan fungsi password_verify
-            if ($userVal == $email && password_verify($pass, $passVal)) {
+        if ($num != 0) {
+            if ($userVal == $email && $passVal == $pass) {
                 header('Location: home.php');
+                exit;
             } else {
-                $error = 'Email atau kata sandi salah!!';
+                $error = 'User atau password salah !';
                 header('Location: login.php');
             }
         } else {
-            $error = 'User tidak ditemukan!!';
+            $error = 'User tidak ditemukan !';
             header('Location: login.php');
         }
     } else {
-        $error = 'Data tidak boleh kosong !!';
+        $error = 'Data tidak boleh kosong !';
         echo $error;
     }
 }
 ?>
-
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-    <title>Login page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
-    <form action="login.php" method="POST">
-        <h2>Login</h2>
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <form action="login.php" method="post">
+            <h2 style="margin-bottom: 1rem">Login</h2>
+            <div class="form-floating mb-3">
+                <input name="txt_email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email</label>
+            </div>
 
-        <input type="text" name="txt_email" placeholder="Masukkan Email">
-        <input type="password" name="txt_pass" placeholder="Masukkan Passowrd">
+            <div class="form-floating">
+                <input name="txt_pass" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
 
-        <button type="submit" name="submit">Sign in</button>
+            <button name="submit" type="submit" class="btn btn-primary ms-auto mt-3" style="width:100%">Submit</button>
 
-        <p>Tidak punya akun? silahkan <a href="register.php">Daftar</p>
-    </form>
+            <p>Tidak punya akun? Silahkan <a href="register.php">Daftar</a></p>
+
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
+<style>
     form {
-        max-width: 300px;
+        width: 400px;
         margin: 0 auto;
         padding: 20px;
         background-color: #fff;
         border: 1px solid #ddd;
-        border-radius: 10px;
+        border-radius: 5px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-
     }
 
-    p {
-        font-size: 13px;
-        margin: 10px 0;
-    }
-
+    p,
     a {
+        margin-top: 10px;
         text-decoration: none;
-        color: #007bff;
-    }
-
-    input {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 18px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-    }
-
-    button[type="submit"] {
-        background-color: #007bff;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 3px;
-        transition: 0.3s;
-        width: 100%;
-    }
-
-    button[type="submit"]:hover {
-        background-color: #0056b3;
     }
 </style>

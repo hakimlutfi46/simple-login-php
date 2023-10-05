@@ -17,6 +17,7 @@ if (isset($_POST['register'])) {
 <head>
     <title>Resister</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
@@ -27,9 +28,21 @@ if (isset($_POST['register'])) {
             <a href="login.php">Login</a>
         </p>
         <h2>Register</h2>
-        <input type="text" name="txt_email" required placeholder="Masukkan Email">
-        <input type="password" name="txt_pass" required placeholder="Masukkan Password">
-        <input type="text" name="txt_nama" required placeholder="Masukkan Nama">
+
+        <div class="form-floating mb-3">
+            <input name="txt_email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email</label>
+        </div>
+
+        <div class="form-floating">
+            <input name="txt_pass" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input name="txt_name" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Nama</label>
+        </div>
         <button type="submit" name="register">Register</button>
     </form>
 
@@ -47,7 +60,7 @@ if (isset($_POST['register'])) {
     }
 
     form {
-        max-width: 300px;
+        width: 600px;
         margin: 0 auto;
         padding: 20px;
         background-color: #fff;
