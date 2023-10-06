@@ -19,6 +19,8 @@ $obj = new Crud;
     <title>Dashboard</title>
     <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -28,16 +30,15 @@ $obj = new Crud;
                 <h3>Halo, Selamat Datang
                     <?php echo $_SESSION['user_name'] ?>
                 </h3>
-                <a href="logout.php"><button class="btn btn-danger">Logout</button></a>
+                <a href="logout.php"><button class="btn btn-dark">Logout</button></a>
             </div>
         </div>
 
         <div class="table-responsive">
-
             <table class="table table-bordered table-hover mt-5">
-                <thead>
+                <thead class="table-dark">
                     <tr class="text-center">
-                        <th scope="col">Nomor</th>
+                        <th scope="col">No</th>
                         <th scope="col">Nama Lengkap</th>
                         <th scope="col">Email</th>
                         <th scope="col">Password</th>
@@ -65,8 +66,9 @@ $obj = new Crud;
                                     <?php echo $row['user_password'] ?>
                                 </td>
                                 <td class="text-center d-flex justify-content-center align-items-center">
-                                    <a href="edit.php?id=<?php echo $row['id'] ?>"><button class="btn btn-primary me-2">Edit</button></a>
-                                    <a href="hapus.php?id=<?php echo $row['id'] ?>"><button class="btn btn-danger ">Hapus</button></a>
+                                    <a href="edit.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-warning me-2"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="hapus.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+
                                 </td>
                             </tr>
                     <?php
@@ -76,6 +78,7 @@ $obj = new Crud;
                 </tbody>
             </table>
         </div>
+
     </div>
 
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
