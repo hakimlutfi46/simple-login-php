@@ -1,27 +1,34 @@
 <?php
 require('koneksi.php');
-
-if (isset($_POST['update'])) {
-    $userId = $_POST['txt_id'];
-    $userMail = $_POST['txt_email'];
-    $userPass = $_POST['txt_pass'];
-    $username = $_POST['txt_nama'];
-
-    $query = "UPDATE user_detail SET user_password='$userPass', user_fullname='$username' WHERE id='$userId'";
-    echo $query;
-    $result = mysqli_query($koneksi, $query);
-    header('Location: home.php');
-}
+require('query.php');
 
 $id = $_GET['id'];
-$query = "SELECT * FROM user_detail WHERE id='$id' ";
-$result = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+$crud = new Crud();
 
-while ($row = mysqli_fetch_array($result)) {
-    $id = $row['id'];
-    $userMail = $row['user_email'];
-    $userPass = $row['user_password'];
-    $userName = $row['user_fullname'];
+if (isset($_POST['update'])) {
+    // Proses update data ke database di sini
+    $id = $_POST['txt_id'];
+    $nama = $_POST['txt_nama'];
+    $email = $_POST['txt_email'];
+    $pass = $_POST['txt_pass'];
+
+
+    if ($crud->editData($id, $email, $pass, $nama)) {
+        echo '<div class="alert alert-success">Data berhasil diupdate</div>';
+        header('Location: home.php');
+    } else {
+        echo '<div class="alert alert-danger">Data gagal diupdate</div>';
+    }
+}
+
+
+$data = $crud->getDataByID($id);
+if ($data) {
+    $userMail = $data['user_email'];
+    $userName = $data['user_fullname'];
+    $userPass = $data['user_password'];
+} else {
+    echo '<div class="alert alert-danger">Data tidak ditemukan.</div>';
 }
 ?>
 <!doctype html>

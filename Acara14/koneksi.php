@@ -1,10 +1,10 @@
 <?php
 class koneksi
 {
-    private $host = " localhost";
-    private $user = " root";
+    private $host = "localhost";
+    private $user = "root";
     private $pass = "";
-    private $db = "user";
+    private $db = "db_user";
     protected $koneksi;
 
     public function __construct()
@@ -15,6 +15,5 @@ class koneksi
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-        return $this->koneksi;
     }
 }

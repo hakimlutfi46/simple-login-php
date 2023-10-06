@@ -33,7 +33,7 @@ if (isset($_POST['register'])) {
 
 <body>
     <div class="container mt-5">
-        <div class="card shadow-md p-4 mx-auto " style="width:60%">
+        <div class="card shadow-md p-4 mx-auto" style="width:60%">
             <form action="register.php" method="POST">
                 <h1 class="mb-3">Register</h1>
 
