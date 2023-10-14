@@ -21,6 +21,10 @@ if (isset($_POST['update'])) {
     }
 }
 
+if (!$id) {
+    header('Location: home.php');
+    exit;
+}
 
 $data = $crud->getDataByID($id);
 if ($data) {
@@ -67,7 +71,7 @@ if ($data) {
                     <input name="txt_nama" type="text" class="form-control" id="floatingInput" placeholder="name@example.com" value="<?php echo $userName; ?>">
                     <label for="floatingInput">Nama</label>
                 </div>
-                <button type="submit" name="update" class="btn btn-success">Update</button>
+                <button type="submit" name="update" class="btn btn-success"><i class="fa-sharp fa-solid fa-pen-to-square me-2"></i>Update</button>
             </form>
         </div>
     </div>

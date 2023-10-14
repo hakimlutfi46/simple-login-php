@@ -41,16 +41,16 @@ if (isset($_POST['submit'])) {
     <div class="position-absolute top-50 start-50 translate-middle">
         <div class="card " style="width: 23rem;">
             <div class="card-body">
-                <h1 class=" text-center mb-5">Login Form</h1>
+                <h1 class=" text-center mt-2 mb-5">Login</h1>
                 <form action="index.php" method="POST">
                     <div class="row mb-4">
                         <div class="col-12 mb-2">
-                            <label for="">Email</label>
-                            <input name="email" type="email" class="form-control" required>
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" class="form-control" required>
                         </div>
                         <div class="col-12">
-                            <label for="">Password</label>
-                            <input name="password" type="password" class="form-control" required>
+                            <label for="passowrd">Password</label>
+                            <input id="passowrd" name="password" type="password" class="form-control" required>
                         </div>
                     </div>
                     <?php

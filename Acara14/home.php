@@ -30,54 +30,58 @@ $obj = new Crud;
                 <h3>Halo, Selamat Datang
                     <?php echo $_SESSION['user_name'] ?>
                 </h3>
-                <a href="logout.php"><button class="btn btn-dark">Logout</button></a>
+                <a href="logout.php"><button class="btn btn-dark">Logout<i class="fa-sharp fa-solid fa-right-from-bracket ms-2"></i></button></a>
             </div>
         </div>
 
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover mt-5">
-                <thead class="table-dark">
-                    <tr class="text-center">
-                        <th scope="col">No</th>
-                        <th scope="col">Nama Lengkap</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Password</th>
-                        <th scope="col" style="max-width: 15px;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $data = $obj->lihatData();
-                    $no = 1;
-                    if ($data->rowCount() > 0) {
-                        while ($row = $data->fetch(PDO::FETCH_ASSOC)) { ?>
+        <form action="home.php" method="POST">
 
-                            <tr style="vertical-align: middle;">
-                                <th scope="row" class="text-center">
-                                    <?php echo $no ?>
-                                </th>
-                                <td>
-                                    <?php echo $row['user_fullname'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $row['user_email'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $row['user_password'] ?>
-                                </td>
-                                <td class="text-center d-flex justify-content-center align-items-center">
-                                    <a href="edit.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-warning me-2"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="hapus.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover mt-5">
+                    <thead class="table-dark">
+                        <tr class="text-center">
+                            <th scope="col">No</th>
+                            <th scope="col">Nama Lengkap</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
+                            <th scope="col" style="max-width: 15px;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $data = $obj->lihatData();
+                        $no = 1;
+                        if ($data->rowCount() > 0) {
+                            while ($row = $data->fetch(PDO::FETCH_ASSOC)) { ?>
 
-                                </td>
-                            </tr>
-                    <?php
-                            $no++;
-                        }
-                    } ?>
-                </tbody>
-            </table>
-        </div>
+                                <tr style="vertical-align: middle;">
+                                    <th scope="row" class="text-center">
+                                        <?= $no; ?>
+                                    </th>
+                                    <td>
+                                        <?= $row['user_fullname']; ?>
+                                    </td>
+                                    <td>
+                                        <?= $row['user_email']; ?>
+                                    </td>
+                                    <td>
+                                        <?= $row['user_password']; ?>
+
+                                    </td>
+                                    <td class="text-center d-flex justify-content-center align-items-center">
+                                        <a href="edit.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-warning me-2"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="hapus.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+
+                                    </td>
+                                </tr>
+                        <?php
+                                $no++;
+                            }
+                        } ?>
+                    </tbody>
+                </table>
+            </div>
+        </form>
 
     </div>
 

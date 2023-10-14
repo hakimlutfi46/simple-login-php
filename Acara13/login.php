@@ -21,24 +21,20 @@ if (isset($_POST['submit'])) {
             $level = $row['level'];
         }
 
-
         if ($num != 0) {
             if ($userVal == $email && $passVal == $pass) {
                 header('Location: home.php');
                 exit;
             } else {
-                // $errors[] = 'User atau password salah !';
-                echo "<script>alert('$error');</script>"; // Menampilkan pesan error dengan alert
+                echo "<script>alert('$error');</script>";
                 header('Location: login.php');
             }
         } else {
-            // $errors[] = 'User tidak ditemukan !';
             echo "<script>alert('$error');</script>";
             header('Location: login.php');
         }
     } else {
         $error = 'Data tidak boleh kosong !';
-        // echo "<script>alert('$error');</script>";
         $errors[] = "Semua data harus diisi";
     }
 }

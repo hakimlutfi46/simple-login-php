@@ -25,26 +25,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Register Form</title>
     <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 
 <body>
     <div class="position-absolute top-50 start-50 translate-middle">
         <div class="card " style="width: 23rem;">
             <div class="card-body">
-                <h1 class=" text-center mb-5">Register Form</h1>
+                <h1 class=" text-center mt-2 mb-5">Register</h1>
                 <form action="#" method="POST">
                     <div class="row mb-4">
                         <div class="col-12 mb-2">
-                            <label for="">Nama</label>
-                            <input type="text" name="nama" class="form-control" required>
+                            <label for="nama">Nama</label>
+                            <input id="nama" type="text" name="nama" class="form-control" required>
                         </div>
                         <div class="col-12 mb-2">
-                            <label for="">Email</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <label for="email">Email</label>
+                            <input id="email" type="email" name="email" class="form-control" required>
                         </div>
                         <div class="col-12">
-                            <label for="">Password</label>
-                            <input type="password" name="pass" class="form-control" required>
+                            <label for="password">Password</label>
+                            <input id="password" type="password" name="pass" class="form-control" required>
                         </div>
                     </div>
                     <?php
